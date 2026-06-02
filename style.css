@@ -1,0 +1,288 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 320px 1fr 340px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.coluna-clientes {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.coluna-clientes h2,
+.coluna-emprestimos h2 {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.login-box-sidebar {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-sizing: border-box;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form label {
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.85rem;
+}
+
+#login-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+#login-form input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#login-form button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+#login-form button:hover {
+    background-color: #2980b9;
+}
+
+.card-cliente {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+}
+
+.card-cliente h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.card-cliente p {
+    margin: 3px 0;
+    color: #666;
+}
+
+.coluna-centro {
+    padding: 30px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.secao {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.secao h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.busca-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.livros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.card-livro {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-livro img {
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.card-livro h5 {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.card-livro p {
+    margin: 0 0 10px 0;
+    font-size: 0.75rem;
+    color: #7f8c8d;
+}
+
+.btn-selecionar {
+    background-color: #2ecc71;
+    font-size: 0.8rem;
+    padding: 6px;
+}
+
+.btn-selecionar:hover {
+    background-color: #27ae60;
+}
+
+.emprestimo-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #e8f4f8;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.coluna-emprestimos {
+    background-color: #ffffff;
+    border-left: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.coluna-emprestimos h2 {
+    border-bottom: 2px solid #e67e22;
+}
+
+.emprestimos-lista-coluna {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-emprestimo {
+    background: #fdfaf7;
+    border-left: 5px solid #e67e22;
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.card-emprestimo img {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.info-emp {
+    flex: 1;
+}
+
+.info-emp h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.info-emp p {
+    margin: 2px 0;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.data-alerta {
+    color: #e67e22;
+    font-weight: bold;
+}

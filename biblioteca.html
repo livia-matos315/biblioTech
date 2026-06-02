@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        
+        <div class="coluna-clientes">
+            <h2>Cadastrar Novo Cliente</h2>
+            <div class="login-box-sidebar">
+                <form id="login-form">
+                    <label for="name">Nome Completo:</label>
+                    <input type="text" id="name" required>
+                    
+                    <label for="cpf">CPF (11 números):</label>
+                    <input type="text" id="cpf" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    
+                    <button type="button" onclick="fazerLogin()">Cadastrar Cliente</button>
+                </form>
+            </div>
+
+            <h2 style="margin-top: 30px;">Clientes Cadastrados</h2>
+            <div id="lista-clientes"></div>
+        </div>
+
+        <div class="coluna-centro">
+            <header>
+                <h1 id="boas-vindas">Painel de Controle</h1>
+            </header>
+
+            <div class="secao">
+                <h3>Buscar Livro na Internet</h3>
+                <div class="busca-container">
+                    <input type="text" id="input-busca" placeholder="Digite o título do livro...">
+                    <button onclick="buscarLivroAPI()">Pesquisar</button>
+                </div>
+                <div id="resultados-livros" class="livros-grid"></div>
+            </div>
+
+            <div class="secao">
+                <h3>Novo Empréstimo</h3>
+                <div class="emprestimo-box">
+                    <div>
+                        <label><strong>1. Selecione o Cliente:</strong></label><br>
+                        <select id="select-clientes">
+                            <option value="">-- Escolha um cliente --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label><strong>2. Livro Selecionado:</strong></label>
+                        <p id="livro-selecionado-txt" style="margin: 5px 0; font-weight: bold; color: #2980b9;">Nenhum livro selecionado ainda</p>
+                    </div>
+                    <button onclick="finalizarEmprestimo()" style="background-color: #e67e22; margin-top: 15px;">Finalizar Empréstimo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="coluna-emprestimos">
+            <h2>Empréstimos Ativos</h2>
+            <div id="lista-emprestimos" class="emprestimos-lista-coluna"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
