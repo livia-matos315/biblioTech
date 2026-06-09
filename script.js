@@ -51,42 +51,45 @@ function executarCadastro() {
 }
 
 function executarLogin() {
-    const usuarioInput = document.getElementById('login-email').value.trim();
+    if (window.event) window.event.preventDefault();
+
+    const emailInput = document.getElementById('login-email').value.trim();
     const senhaInput = document.getElementById('login-senha').value.trim();
 
-    if (usuarioInput === 'Admin' && senhaInput === 'admin') {
-        const adminSession = { nome: 'Admin', perfil: 'admin' };
-        sessionStorage.setItem("usuarioLogado", JSON.stringify(adminSession));
-        window.location.href = 'index.html';
+    if (emailInput === '' || senhaInput === '') {
+        alert("Por favor, preencha todos os campos!");
+        return;
+    }
+
+    if (emailInput === 'admin' && senhaInput === 'admin') {
+        const usuarioAdmin = {
+            nome: "Administrador",
+            email: "admin",
+            perfil: "admin"
+        };
+        sessionStorage.setItem("usuarioLogado", JSON.stringify(usuarioAdmin));
+        alert("Login efetuado como Administrador!");
+        window.location.href = "tela-admin.html"; 
         return;
     }
 
     let listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const usuarioExisteNoSistema = listaUsuarios.some(user => user.email === usuarioInput || user.nome === usuarioInput);
 
-    if (!usuarioExisteNoSistema && usuarioInput !== '' && senhaInput !== '') {
-        alert("Este e-mail não está cadastrado! Preencha seus dados para criar uma conta.");
-        alternarTelas('cadastro');
-        
-        const campoEmailCadastro = document.getElementById('email');
-        if (campoEmailCadastro) {
-            campoEmailCadastro.value = usuarioInput;
-        }
-        return;
-    }
-
-    const usuarioEncontrado = listaUsuarios.find(user => (user.email === usuarioInput || user.nome === usuarioInput) && user.senha === senhaInput);
+    const usuarioEncontrado = listaUsuarios.find(user => user.email === emailInput && user.senha === senhaInput);
 
     if (usuarioEncontrado) {
-        const clienteSession = { nome: usuarioEncontrado.nome, perfil: 'cliente' };
-        sessionStorage.setItem("usuarioLogado", JSON.stringify(clienteSession));
+        sessionStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
         
-        console.log("=== SESSÃO ATIVA NO SESSIONSTORAGE ===");
-        console.log("Dados da sessão:", clienteSession);
+        alert(`Bem-vindo, ${usuarioEncontrado.nome}!`);
         
-        window.location.href = 'biblioteca.html';
+        if (usuarioEncontrado.perfil === 'admin') {
+            window.location.href = "tela-admin.html";
+        } else {
+            window.location.href = "biblioteca.html"; 
+        }
     } else {
-        alert("Senha incorreta!");
+        alternarTelas('cadastro');
+        alert("Usuário ou senha incorretos! Se não tiver conta, cadastre-se.");
     }
 }
 
@@ -100,21 +103,37 @@ window.onload = function () {
     console.log("Sessão encontrada:", usuarioLogado);
 
     if (paginaAtual === 'index.html') {
-        if (!usuarioLogado || usuarioLogado.perfil !== 'admin') {
-            window.location.href = 'login.html';
-            return;
+        if (usuarioLogado) {
+            if (usuarioLogado.perfil === 'admin') {
+                window.location.href = 'tela-admin.html';
+            } else {
+                window.location.href = 'biblioteca.html';
+            }
         }
-        document.getElementById('boas-vindas').innerText = "Painel de Controle - Logado como: " + usuarioLogado.nome;
-        carregarClientes();
-        carregarEmprestimosAdmin();
+        return;
     }
 
-    if (paginaAtual === 'biblioteca.html') {
-        if (!usuarioLogado) {
-            window.location.href = 'login.html';
+    if (paginaAtual === 'tela-admin.html') {
+        if (!usuarioLogado || usuarioLogado.perfil !== 'admin') {
+            window.location.href = 'index.html';
             return;
         }
-        document.getElementById('boas-vindas').innerText = "Biblioteca - Bem-vindo(a), " + usuarioLogado.nome;
+
+        document.getElementById('boas-vindas').innerText =
+            "Painel de Controle - Logado como: " + usuarioLogado.nome;
+
+        carregarClientes();
+        carregarEmprestimosAdmin();
+        return;
+    }
+    if (paginaAtual === 'biblioteca.html') {
+        if (!usuarioLogado) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        document.getElementById('boas-vindas').innerText =
+            "Biblioteca - Bem-vindo(a), " + usuarioLogado.nome;
     }
 };
 
@@ -155,7 +174,7 @@ function excluirCliente(cpfCliente) {
 
 function fazerLogout() {
     sessionStorage.removeItem('usuarioLogado');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 async function buscarLivroAPI() {
@@ -206,7 +225,7 @@ function finalizarEmprestimoCliente() {
 
     if (!usuarioLogado) {
         alert('Erro: Sessão expirada. Por favor, faça login novamente.');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
         return;
     }
 
