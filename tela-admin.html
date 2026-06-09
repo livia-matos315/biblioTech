@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - BiblioTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container" style="grid-template-columns: 1fr;">
+        <div class="coluna-centro">
+            <header>
+                <h1 id="boas-vindas">Painel de Controle</h1>
+                <button onclick="fazerLogout()" style="background-color: #e74c3c; padding: 8px 15px;">Sair</button>
+            </header>
+
+            <div class="secao">
+                <h2>Clientes Cadastrados</h2>
+                <div id="lista-clientes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; margin-bottom: 25px;"></div>
+            </div>
+
+            <div class="secao">
+                <h2>Empréstimos Ativos (Painel Administrativo)</h2>
+                <div id="lista-emprestimos" class="emprestimos-lista-coluna"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
