@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container" style="grid-template-columns: 1fr;">
+        
+        <div class="coluna-centro">
+            <header>
+                <h1 id="boas-vindas">Painel de Controle</h1>
+                <button onclick="fazerLogout()" style="background-color: #e74c3c; padding: 8px 15px;">Sair</button>
+            </header>
+
+            <div class="secao">
+                <h3>Buscar Livro na Internet</h3>
+                <div class="busca-container">
+                    <input type="text" id="input-busca" placeholder="Digite o título do livro...">
+                    <button onclick="buscarLivroAPI()">Pesquisar</button>
+                </div>
+                <div id="resultados-livros" class="livros-grid"></div>
+            </div>
+
+            <div class="secao">
+                <h3>Novo Empréstimo</h3>
+                <div class="emprestimo-box">
+                    <div id="area-cliente-solicitante">
+                        </div>
+                    <div>
+                        <label><strong>Livro Selecionado:</strong></label>
+                        <p id="livro-selecionado-txt" style="margin: 5px 0; font-weight: bold; color: #2980b9;">Nenhum livro selecionado ainda</p>
+                    </div>
+                    <button onclick="finalizarEmprestimoCliente()" style="background-color: #e67e22; margin-top: 15px;">Finalizar Empréstimo</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
