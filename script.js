@@ -50,7 +50,8 @@ function executarCadastro() {
     }
 }
 
-function executarLogin() {
+function executarLogin(e) {
+    if (e) e.preventDefault(); 
     if (window.event) window.event.preventDefault();
 
     const emailInput = document.getElementById('login-email').value.trim();
@@ -74,12 +75,10 @@ function executarLogin() {
     }
 
     let listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
     const usuarioEncontrado = listaUsuarios.find(user => user.email === emailInput && user.senha === senhaInput);
 
     if (usuarioEncontrado) {
         sessionStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
-        
         alert(`Bem-vindo, ${usuarioEncontrado.nome}!`);
         
         if (usuarioEncontrado.perfil === 'admin') {
@@ -88,8 +87,8 @@ function executarLogin() {
             window.location.href = "biblioteca.html"; 
         }
     } else {
-        alternarTelas('cadastro');
         alert("Usuário ou senha incorretos! Se não tiver conta, cadastre-se.");
+        alternarTelas('cadastro');
     }
 }
 
